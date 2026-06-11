@@ -1,0 +1,165 @@
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 22px;
+  background: #fbfcfa;
+  color: #17201c;
+}
+
+.side-panel__header {
+  padding-bottom: 4px;
+}
+
+.side-panel__eyebrow {
+  margin: 0 0 6px;
+  color: #627168;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.side-panel h1 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.18;
+}
+
+.panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid #dfe5de;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.field-label {
+  color: #334139;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.search-row,
+.action-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.text-input {
+  min-width: 0;
+  height: 40px;
+  border: 1px solid #cbd5cc;
+  border-radius: 6px;
+  padding: 0 12px;
+  background: #fff;
+  color: #17201c;
+}
+
+.text-input:focus {
+  border-color: #2f6f58;
+  outline: 2px solid rgba(47, 111, 88, 0.18);
+  outline-offset: 0;
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 40px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 0 14px;
+  font-weight: 700;
+}
+
+.primary-button {
+  background: #2f6f58;
+  color: #fff;
+}
+
+.secondary-button {
+  border-color: #cbd5cc;
+  background: #fff;
+  color: #24312a;
+}
+
+.secondary-button:disabled {
+  background: #edf1eb;
+  color: #89948d;
+}
+
+.helper-text,
+.empty-state {
+  margin: 0;
+  color: #69766e;
+  font-size: 13px;
+}
+
+.empty-state {
+  display: grid;
+  min-height: 88px;
+  place-items: center;
+  border: 1px dashed #cbd5cc;
+  border-radius: 8px;
+  background: #f5f7f4;
+}
+
+.count-pill {
+  min-width: 28px;
+  border-radius: 999px;
+  padding: 2px 8px;
+  background: #e5ece3;
+  color: #334139;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0;
+}
+
+.summary-grid div {
+  border: 1px solid #dfe5de;
+  border-radius: 8px;
+  padding: 12px;
+  background: #f5f7f4;
+}
+
+.summary-grid dt {
+  color: #69766e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.summary-grid dd {
+  margin: 4px 0 0;
+  color: #17201c;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+@media (max-width: 860px) {
+  .side-panel {
+    height: auto;
+    min-height: 44vh;
+  }
+}
