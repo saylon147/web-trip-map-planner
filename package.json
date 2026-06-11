@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@geoman-io/leaflet-geoman-free": "^2.19.3",
+    "idb": "^8.0.3",
     "leaflet": "^1.9.4",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
