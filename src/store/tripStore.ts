@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { loadTripSnapshot, saveTripSnapshot } from '../services/storage'
-import type { TripRoute, TripStop } from '../types/trip'
+import type { CustomMapAnnotation, TripRoute, TripStop } from '../types/trip'
 
 type TripState = {
   stops: TripStop[]
@@ -10,6 +10,10 @@ type TripState = {
   removeStop: (id: string) => void
   replaceStops: (stops: TripStop[]) => void
   reorderStops: (fromIndex: number, toIndex: number) => void
+  updateStop: (id: string, patch: Partial<TripStop>) => void
+  setStopCustomMapImage: (id: string, imageStorageKey: string, imageName: string) => void
+  addStopCustomMapAnnotation: (id: string, annotation: CustomMapAnnotation) => void
+  removeStopCustomMapAnnotation: (stopId: string, annotationId: string) => void
   selectStop: (id?: string) => void
   setRoute: (route: TripRoute) => void
   clearRoute: () => void
@@ -68,6 +72,67 @@ export const useTripStore = create<TripState>((set, get) => ({
         route: undefined,
       }
     }),
+
+  updateStop: (id, patch) =>
+    set((state) => ({
+      stops: state.stops.map((stop) =>
+        stop.id === id
+          ? {
+              ...stop,
+              ...patch,
+            }
+          : stop,
+      ),
+      route: undefined,
+    })),
+
+  setStopCustomMapImage: (id, imageStorageKey, imageName) =>
+    set((state) => ({
+      stops: state.stops.map((stop) =>
+        stop.id === id
+          ? {
+              ...stop,
+              customMap: {
+                imageStorageKey,
+                imageName,
+                annotations: stop.customMap?.annotations ?? [],
+              },
+            }
+          : stop,
+      ),
+    })),
+
+  addStopCustomMapAnnotation: (id, annotation) =>
+    set((state) => ({
+      stops: state.stops.map((stop) =>
+        stop.id === id && stop.customMap
+          ? {
+              ...stop,
+              customMap: {
+                ...stop.customMap,
+                annotations: [...stop.customMap.annotations, annotation],
+              },
+            }
+          : stop,
+      ),
+    })),
+
+  removeStopCustomMapAnnotation: (stopId, annotationId) =>
+    set((state) => ({
+      stops: state.stops.map((stop) =>
+        stop.id === stopId && stop.customMap
+          ? {
+              ...stop,
+              customMap: {
+                ...stop.customMap,
+                annotations: stop.customMap.annotations.filter(
+                  (annotation) => annotation.id !== annotationId,
+                ),
+              },
+            }
+          : stop,
+      ),
+    })),
 
   selectStop: (id) => set({ selectedStopId: id }),
 

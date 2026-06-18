@@ -1,5 +1,31 @@
 export type TripStopSource = 'search' | 'import'
 
+export type CustomMapMarker = {
+  id: string
+  type: 'point'
+  label: string
+  x: number
+  y: number
+}
+
+export type CustomMapRegion = {
+  id: string
+  type: 'region'
+  label: string
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+export type CustomMapAnnotation = CustomMapMarker | CustomMapRegion
+
+export type TripStopCustomMap = {
+  imageStorageKey: string
+  imageName: string
+  annotations: CustomMapAnnotation[]
+}
+
 export type TripStop = {
   id: string
   name: string
@@ -7,6 +33,7 @@ export type TripStop = {
   lng: number
   address?: string
   source: TripStopSource
+  customMap?: TripStopCustomMap
 }
 
 export type TripRouteLeg = {
